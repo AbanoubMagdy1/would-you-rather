@@ -1,0 +1,25 @@
+.home-container {
+  border: 1px solid black;
+}
+
+.home-container .btns-wrapper {
+  display: flex;
+}
+
+.home-container .btns-wrapper .button {
+  border: none;
+  flex: 1 0 50%;
+}
+
+.home-container .btns-wrapper .button.active {
+  cursor: default;
+  border-bottom: none;
+  background-color: #fff;
+}
+
+.home-container .questions-wrapper {
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

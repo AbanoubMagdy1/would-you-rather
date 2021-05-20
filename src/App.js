@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+//My components
+import HomeScreen from './screens/HomeScreen';
+import LoginScreen from './screens/LoginScreen';
+import Navbar from './components/Navbar';
+//Actions
 import { receiveData } from './actions/shared';
+//Libraries
 import { connect } from 'react-redux';
 import LoadingBar from 'react-redux-loading-bar';
+import { Route } from 'react-router-dom';
 
 class App extends Component {
   componentDidMount() {
@@ -11,10 +18,12 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <LoadingBar
-          style={{ position: 'absolute', top: '0', left: '0', right: '0' }}
-        />
-        <p>App is running</p>
+        <LoadingBar />
+        <Navbar />
+        <main>
+          <Route path="/" exact component={HomeScreen} />
+          <Route path="/login" component={LoginScreen} />
+        </main>
       </React.Fragment>
     );
   }
