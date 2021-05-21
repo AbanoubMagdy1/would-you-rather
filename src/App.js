@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 //My components
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
+import AnswerScreen from './screens/AnswerScreen';
+import ResultScreen from './screens/ResultScreen';
 import Navbar from './components/Navbar';
 //Actions
 import { receiveData } from './actions/shared';
@@ -18,11 +20,13 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <LoadingBar />
         <Navbar />
+        <LoadingBar />
         <main>
           <Route path="/" exact component={HomeScreen} />
           <Route path="/login" component={LoginScreen} />
+          <Route path="/answer/:id" component={AnswerScreen} />
+          <Route path="/result/:id" component={ResultScreen} />
         </main>
       </React.Fragment>
     );

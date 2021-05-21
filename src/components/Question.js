@@ -5,7 +5,8 @@ import './Question.css';
 
 class Question extends Component {
   render() {
-    const { question } = this.props;
+    const { question, QuestionSub } = this.props;
+    if (!question) return <h3>Question not found</h3>;
     return (
       <div className="question">
         <div className="question-img">
@@ -13,10 +14,7 @@ class Question extends Component {
         </div>
         <div className="question-right">
           <h6 className="question-header">{question.name} asks ... ?</h6>
-          <p className="question-body">
-            {question.optionOneText} or {question.optionTwoText}?
-          </p>
-          <button className="button">Answer</button>
+          <QuestionSub question={question} />
         </div>
       </div>
     );

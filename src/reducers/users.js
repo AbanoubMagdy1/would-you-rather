@@ -4,11 +4,10 @@ export default function usersReducer(state = {}, action) {
   switch (action.type) {
     case RECEIVE_USERS:
       return { ...state, ...action.users };
-
     case ANSWER_QUESTION:
       return {
         ...state,
-        [action.authed]: userReducer(state[authed]),
+        [action.authed]: userReducer(state[action.authed], action),
       };
 
     default:

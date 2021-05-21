@@ -34,12 +34,13 @@ export const receiveData = () => dispatch => {
 };
 
 export const answerQuestion =
-  ({ authedUser, qid, answer }) =>
+  ({ authedUser, qid, answer }, cb) =>
   dispatch => {
     dispatch(showLoading());
     _saveQuestionAnswer({ authedUser, qid, answer })
       .then(() => {
         dispatch(answerQuestionAction(authedUser, qid, answer));
+        if (cb) cb();
       })
       .finally(() => dispatch(hideLoading()));
   };

@@ -4,9 +4,9 @@ export const formatQuestion = (question, author, authed) => {
   const authedAnswer = !authed
     ? ''
     : optionOne.votes.includes(authed.id)
-    ? 'option1'
+    ? 'optionOne'
     : optionTwo.votes.includes(authed.id)
-    ? 'option2'
+    ? 'optionTwo'
     : '';
   return {
     id,
@@ -18,5 +18,13 @@ export const formatQuestion = (question, author, authed) => {
     optionTwoVotes: optionTwo.votes.length,
     totalVotes: optionOne.votes.length + optionTwo.votes.length,
     authedAnswer,
+  };
+};
+
+export const calcPercentage = (numerator, denomerator) => {
+  let percent = (numerator / denomerator) * 100;
+  return {
+    percent,
+    text: `${percent.toFixed(1)}%`,
   };
 };

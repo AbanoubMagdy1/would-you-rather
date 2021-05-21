@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Question from '../components/Question';
+import QuestionHome from '../subcomponents/QuestionHome';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './HomeScreen.css';
@@ -48,7 +49,7 @@ class HomeScreen extends Component {
           </div>
           <div className="questions-wrapper">
             {displayedQuestion.map(q => (
-              <Question key={q} id={q} />
+              <Question key={q} id={q} QuestionSub={QuestionHome} />
             ))}
           </div>
         </div>
