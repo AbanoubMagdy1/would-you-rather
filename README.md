@@ -15,6 +15,10 @@
 - Redux for state management
 - React-bootstrap for UI components
 
+# For live preview of the app :
+
+    http://AbanoubMagdy1.github.io/would-you-rather
+
 # Data
 
 There are two types of objects stored in our database:

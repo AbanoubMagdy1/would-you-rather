@@ -2,6 +2,7 @@
   "name": "would-you-rather",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://AbanoubMagdy1.github.io/would-you-rather",
   "dependencies": {
     "react": "^17.0.2",
     "react-bootstrap": "^1.5.2",
@@ -17,7 +18,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "license": "MIT",
   "repository": {
