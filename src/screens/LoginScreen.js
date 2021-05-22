@@ -42,12 +42,11 @@ class LoginScreen extends Component {
           className="d-block mx-auto my-5"
           src="https://tse4.mm.bing.net/th?id=OIP.b3kDLAq9vS0APl1nwmlXnAAAAA&pid=Api"
           alt="Would you rather"
+          fluid
           rounded
         />
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
-            <Form.Label>Choose a user:</Form.Label>
-
             <Dropdown className="my-3">
               <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                 {this.state.id ? (
@@ -65,7 +64,7 @@ class LoginScreen extends Component {
 
               <Dropdown.Menu>
                 {Object.keys(users).map(id => (
-                  <Dropdown.Item onClick={() => this.handleChange(id)}>
+                  <Dropdown.Item onClick={() => this.handleChange(id)} key={id}>
                     <Image className="img" src={users[id].avatarURL} key={id} />
                     {users[id].name}
                   </Dropdown.Item>

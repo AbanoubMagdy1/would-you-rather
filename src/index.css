@@ -21,6 +21,7 @@ main {
   width: 50%;
   margin: 2rem auto;
   min-width: 400px;
+  flex-grow: 1;
 }
 
 .nav-info {

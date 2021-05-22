@@ -7,6 +7,7 @@ import ResultScreen from './screens/ResultScreen';
 import NewQuestionScreen from './screens/NewQuestionScreen';
 import LeaderBoardScreen from './screens/LeaderBoardScreen';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 //Actions
 import { receiveData } from './actions/shared';
 //Libraries
@@ -32,6 +33,7 @@ class App extends Component {
           <Route path="/leaderboard" component={LeaderBoardScreen} />
           <Route path="/new" component={NewQuestionScreen} />
         </main>
+        <Footer />
       </React.Fragment>
     );
   }
