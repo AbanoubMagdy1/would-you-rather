@@ -4,6 +4,7 @@ import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import AnswerScreen from './screens/AnswerScreen';
 import ResultScreen from './screens/ResultScreen';
+import LeaderBoardScreen from './screens/LeaderBoardScreen';
 import Navbar from './components/Navbar';
 //Actions
 import { receiveData } from './actions/shared';
@@ -27,6 +28,7 @@ class App extends Component {
           <Route path="/login" component={LoginScreen} />
           <Route path="/answer/:id" component={AnswerScreen} />
           <Route path="/result/:id" component={ResultScreen} />
+          <Route path="/leaderboard" component={LeaderBoardScreen} />
         </main>
       </React.Fragment>
     );

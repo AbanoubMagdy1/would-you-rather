@@ -30,6 +30,7 @@ class HomeScreen extends Component {
     return (
       <>
         {!authed && <Redirect to="/login" />}
+        <h1 className="text-center my-4">Would you rather</h1>
         <div className="home-container">
           <div className="btns-wrapper">
             <button

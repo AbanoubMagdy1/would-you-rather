@@ -11,7 +11,6 @@ class Header extends Component {
 
   render() {
     const { authed } = this.props;
-    console.log(authed);
     return (
       <Navbar
         bg="dark"
