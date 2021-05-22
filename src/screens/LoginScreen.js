@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { loginAction } from '../actions/authed';
 import { connect } from 'react-redux';
-import { Form, Button, Image } from 'react-bootstrap';
+import { Form, Dropdown, Button, Image } from 'react-bootstrap';
 
 class LoginScreen extends Component {
   state = {
     id: '',
   };
 
-  handleChange = e => {
-    this.setState({ id: e.target.value });
+  handleChange = id => {
+    this.setState({ id });
   };
 
   handleSubmit = e => {
@@ -33,32 +33,48 @@ class LoginScreen extends Component {
   render() {
     const { users } = this.props;
     return (
-      <div>
-        <h3>Login</h3>
+      <div className="border border-dark p-3">
+        <h4 className="text-center mb-1">Welcome to would you rather game</h4>
+        <h6 className="text-center mb-3">
+          Please choose a user to start playing
+        </h6>
+        <Image
+          className="d-block mx-auto my-5"
+          src="https://tse4.mm.bing.net/th?id=OIP.b3kDLAq9vS0APl1nwmlXnAAAAA&pid=Api"
+          alt="Would you rather"
+          rounded
+        />
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
-            <Form.Label>Choose a user</Form.Label>
+            <Form.Label>Choose a user:</Form.Label>
 
-            <Form.Control
-              as="select"
-              onChange={this.handleChange}
-              className="my-3"
-            >
-              {Object.keys(users).map(id => (
-                <React.Fragment>
-                  <option
-                    value={id}
-                    key={id}
-                    style={{ backgroundImage: users[id].avatarURL }}
-                  >
+            <Dropdown className="my-3">
+              <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                {this.state.id ? (
+                  <>
+                    <Image
+                      className="img"
+                      src={users[this.state.id].avatarURL}
+                    />
+                    {users[this.state.id].name}
+                  </>
+                ) : (
+                  'Choose a user'
+                )}
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                {Object.keys(users).map(id => (
+                  <Dropdown.Item onClick={() => this.handleChange(id)}>
+                    <Image className="img" src={users[id].avatarURL} key={id} />
                     {users[id].name}
-                  </option>
-                </React.Fragment>
-              ))}
-            </Form.Control>
+                  </Dropdown.Item>
+                ))}
+              </Dropdown.Menu>
+            </Dropdown>
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button className="w-100" variant="primary" type="submit" block>
             Login
           </Button>
         </Form>
