@@ -6,16 +6,23 @@
 
 - Clone this repo
 - `cd` into it
-- Run `npm start` to install the
+- Run `npm install` to install the dependencies
+- Run `npm start` to run the application, it will be running on port 3000
 
-## Data
+# Technologies used in the application :
+
+- React
+- Redux for state management
+- React-bootstrap for UI components
+
+# Data
 
 There are two types of objects stored in our database:
 
 - Users
 - Questions
 
-### Users
+# Users
 
 Users include:
 
@@ -27,7 +34,7 @@ Users include:
 | questions | Array  | A list of ids of the polling questions this user created                                                                                                                                                       |
 | answers   | Object | The object's keys are the ids of each question this user answered. The value of each key is the answer the user selected. It can be either `'optionOne'` or `'optionTwo'` since each question has two options. |
 
-### Questions
+# Questions
 
 Questions include:
 
@@ -39,7 +46,7 @@ Questions include:
 | optionOne | Object | The first voting option                |
 | optionTwo | Object | The second voting option               |
 
-### Voting Options
+# Voting Options
 
 Voting options are attached to questions. They include:
 
