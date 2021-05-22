@@ -13,7 +13,7 @@ import { receiveData } from './actions/shared';
 //Libraries
 import { connect } from 'react-redux';
 import LoadingBar from 'react-redux-loading-bar';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 class App extends Component {
   componentDidMount() {
@@ -21,10 +21,12 @@ class App extends Component {
   }
 
   render() {
+    const { authed } = this.props;
     return (
       <React.Fragment>
         <Navbar />
         <LoadingBar />
+        {!authed && <Redirect to="/login" />}
         <main>
           <Route path="/" exact component={HomeScreen} />
           <Route path="/login" component={LoginScreen} />
@@ -39,4 +41,4 @@ class App extends Component {
   }
 }
 
-export default connect()(App);
+export default connect(({ authed }) => ({ authed }))(App);
