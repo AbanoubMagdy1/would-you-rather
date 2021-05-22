@@ -1,10 +1,11 @@
 import { getData } from '../utils/api';
-import { _saveQuestionAnswer } from '../utils/_DATA';
+import { _saveQuestionAnswer, _saveQuestion } from '../utils/_DATA';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
 
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const ANSWER_QUESTION = 'ANSWER_QUESTION';
+export const NEW_QUESTION = 'NEW_QUESTION';
 
 const receiveUsersAction = users => ({
   type: RECEIVE_USERS,
@@ -21,6 +22,11 @@ const answerQuestionAction = (authed, id, answer) => ({
   id,
   authed,
   answer,
+});
+
+const questionAction = question => ({
+  type: NEW_QUESTION,
+  question,
 });
 
 export const receiveData = () => dispatch => {
@@ -41,6 +47,18 @@ export const answerQuestion =
       .then(() => {
         dispatch(answerQuestionAction(authedUser, qid, answer));
         if (cb) cb();
+      })
+      .finally(() => dispatch(hideLoading()));
+  };
+
+export const createQuestion =
+  ({ optionOneText, optionTwoText, author }, cb) =>
+  dispatch => {
+    dispatch(showLoading());
+    _saveQuestion({ optionOneText, optionTwoText, author })
+      .then(question => {
+        dispatch(questionAction(question));
+        if (cb) cb(question.id);
       })
       .finally(() => dispatch(hideLoading()));
   };

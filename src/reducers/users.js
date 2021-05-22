@@ -1,4 +1,8 @@
-import { RECEIVE_USERS, ANSWER_QUESTION } from '../actions/shared';
+import {
+  RECEIVE_USERS,
+  ANSWER_QUESTION,
+  NEW_QUESTION,
+} from '../actions/shared';
 
 export default function usersReducer(state = {}, action) {
   switch (action.type) {
@@ -9,7 +13,14 @@ export default function usersReducer(state = {}, action) {
         ...state,
         [action.authed]: userReducer(state[action.authed], action),
       };
-
+    case NEW_QUESTION:
+      return {
+        ...state,
+        [action.question.author]: userReducer(
+          state[action.question.author],
+          action
+        ),
+      };
     default:
       return state;
   }
@@ -25,5 +36,13 @@ function userReducer(state, action) {
           [action.id]: action.answer,
         },
       };
+    case NEW_QUESTION:
+      return {
+        ...state,
+        questions: state.questions.concat([action.question]),
+      };
+
+    default:
+      return state;
   }
 }

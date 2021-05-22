@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { logoutAction } from '../actions/authed';
 import { LinkContainer } from 'react-router-bootstrap';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Navbar, Nav, Image } from 'react-bootstrap';
 
 class Header extends Component {
   handleLogout = () => {
     this.props.dispatch(logoutAction());
+    this.props.history.push('/login');
   };
 
   render() {
@@ -65,4 +67,4 @@ const mapStateToProps = ({ users, authed }) => ({
   authed: authed ? users[authed] : null,
 });
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));

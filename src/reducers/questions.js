@@ -1,4 +1,8 @@
-import { RECEIVE_QUESTIONS, ANSWER_QUESTION } from '../actions/shared';
+import {
+  RECEIVE_QUESTIONS,
+  ANSWER_QUESTION,
+  NEW_QUESTION,
+} from '../actions/shared';
 
 export default function questionsReducer(state = {}, action) {
   switch (action.type) {
@@ -9,6 +13,12 @@ export default function questionsReducer(state = {}, action) {
         ...state,
         [action.id]: questionReducer(state[action.id], action),
       };
+    case NEW_QUESTION:
+      return {
+        ...state,
+        [action.question.id]: { ...action.question },
+      };
+
     default:
       return state;
   }
