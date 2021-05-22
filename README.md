@@ -17,7 +17,7 @@
 
 # For live preview of the app :
 
-    http://AbanoubMagdy1.github.io/would-you-rather
+    https://AbanoubMagdy1.github.io/would-you-rather/
 
 # Data
 
