@@ -20,14 +20,11 @@ class QuestionAnswer extends Component {
     this.setState({ isAnswered: true });
 
     this.props.dispatch(
-      answerQuestion(
-        {
-          authedUser: this.props.authed.id,
-          qid: this.props.question.id,
-          answer: this.state.answer,
-        },
-        () => this.props.history.push(`/result/${this.props.question.id}`)
-      )
+      answerQuestion({
+        authedUser: this.props.authed.id,
+        qid: this.props.question.id,
+        answer: this.state.answer,
+      })
     );
   };
 

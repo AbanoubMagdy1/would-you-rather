@@ -12,7 +12,8 @@ class User extends Component {
           <img src={user.avatarURL} alt={user.name} />
         </div>
         <div className="user-body">
-          <p className="user-info">
+          <h5 className="user-info">{user.name}</h5>
+          <p className="user-info my-3">
             <span>Questions Asked :</span>
             <span className="num">{questionLength}</span>
           </p>

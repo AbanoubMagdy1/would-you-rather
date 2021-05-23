@@ -27,7 +27,9 @@ class LoginScreen extends Component {
   };
 
   componentDidUpdate = () => {
-    if (this.props.authed) this.props.history.push('/');
+    const { search } = this.props.location;
+    const redirect = search ? search.split('=')[1] : '';
+    if (this.props.authed) this.props.history.push(`/${redirect}`);
   };
 
   render() {

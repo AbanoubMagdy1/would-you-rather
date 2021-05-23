@@ -9,10 +9,7 @@ class QuestionHome extends Component {
         <p>
           {question.optionOneText} or {question.optionTwoText}?
         </p>
-        <Link
-          className="button"
-          to={`/${question.authedAnswer ? 'result' : 'answer'}/${question.id}`}
-        >
+        <Link className="button" to={`/questions/${question.id}`}>
           {question.authedAnswer ? 'See Result' : 'Answer'}
         </Link>
       </div>

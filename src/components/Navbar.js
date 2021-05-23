@@ -29,7 +29,7 @@ class Header extends Component {
             </LinkContainer>
 
             {authed && (
-              <LinkContainer to="/new">
+              <LinkContainer to="/add">
                 <Nav.Link>New Question</Nav.Link>
               </LinkContainer>
             )}

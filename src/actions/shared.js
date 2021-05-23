@@ -46,7 +46,6 @@ export const answerQuestion =
     _saveQuestionAnswer({ authedUser, qid, answer })
       .then(() => {
         dispatch(answerQuestionAction(authedUser, qid, answer));
-        if (cb) cb();
       })
       .finally(() => dispatch(hideLoading()));
   };
@@ -58,7 +57,7 @@ export const createQuestion =
     _saveQuestion({ optionOneText, optionTwoText, author })
       .then(question => {
         dispatch(questionAction(question));
-        if (cb) cb(question.id);
+        if (cb) cb();
       })
       .finally(() => dispatch(hideLoading()));
   };

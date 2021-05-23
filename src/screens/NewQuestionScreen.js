@@ -19,8 +19,8 @@ class NewQuestionScreen extends Component {
     const { optionOneText, optionTwoText } = this.state;
     const { authed } = this.props;
     this.props.dispatch(
-      createQuestion({ optionOneText, optionTwoText, author: authed }, id =>
-        this.props.history.push(`/answer/${id}`)
+      createQuestion({ optionOneText, optionTwoText, author: authed }, () =>
+        this.props.history.push(`/`)
       )
     );
   };
@@ -28,7 +28,7 @@ class NewQuestionScreen extends Component {
   render() {
     return (
       <>
-        {!this.props.authed && <Redirect to="/" />}
+        {!this.props.authed && <Redirect to="/login?redirect=add" />}
         <div className="border border-dark p-3">
           <h2 className="text-center mb-3">Create your question</h2>
           <p>Would you rather ...</p>

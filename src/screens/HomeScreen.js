@@ -61,7 +61,9 @@ class HomeScreen extends Component {
 
 const mapStateToProps = ({ authed, users, questions }) => {
   return {
-    questions: Object.keys(questions),
+    questions: Object.keys(questions).sort(
+      (a, b) => questions[b].timestamp - questions[a].timestamp
+    ),
     authed: authed ? users[authed] : null,
   };
 };

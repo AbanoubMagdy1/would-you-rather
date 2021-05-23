@@ -8,7 +8,7 @@ class LeaderBoardScreen extends Component {
     const { users, authed } = this.props;
     return (
       <div>
-        {!authed && <Redirect to="/" />}
+        {!authed && <Redirect to="/login?redirect=leaderboard" />}
         <h2 className="text-center my-4">Leaderboard</h2>
         {users.map((user, i) => (
           <User key={user.id} user={user} rank={i + 1} />
