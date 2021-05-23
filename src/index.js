@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
+    <Router basename="/would-you-rather">
       <App />
     </Router>
   </Provider>,
