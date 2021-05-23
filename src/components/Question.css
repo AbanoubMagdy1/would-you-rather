@@ -84,3 +84,14 @@
   text-align: center;
   padding-top: 0.8rem;
 }
+
+@media (max-width: 700px) {
+  .question {
+    width: 300px;
+  }
+
+  .question .question-img img {
+    width: 80px;
+    height: 80;
+  }
+}

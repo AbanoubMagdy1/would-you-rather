@@ -49,3 +49,13 @@ main {
   text-decoration: none;
   text-align: center;
 }
+
+@media (max-width: 600px) {
+  main {
+    min-width: 340px;
+  }
+
+  .img-login {
+    width: 300px;
+  }
+}

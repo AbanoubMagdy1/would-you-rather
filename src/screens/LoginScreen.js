@@ -41,7 +41,7 @@ class LoginScreen extends Component {
           Please choose a user to start playing
         </h6>
         <Image
-          className="d-block mx-auto my-5"
+          className="d-block mx-auto my-5 img-login"
           src="https://tse4.mm.bing.net/th?id=OIP.b3kDLAq9vS0APl1nwmlXnAAAAA&pid=Api"
           alt="Would you rather"
           fluid
