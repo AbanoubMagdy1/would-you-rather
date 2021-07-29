@@ -3,7 +3,9 @@ import { formatQuestion } from '../utils/helpers';
 import { connect } from 'react-redux';
 import './Question.css';
 
-class Question extends Component {
+import { QuestionProps, StoreState } from '../types';
+
+class Question extends Component<QuestionProps> {
   render() {
     const { question, QuestionSub } = this.props;
     if (!question) return <h3>Question not found</h3>;
@@ -21,7 +23,10 @@ class Question extends Component {
   }
 }
 
-const mapStateToProps = ({ questions, authed, users }, { id }) => {
+const mapStateToProps = (
+  { questions, authed, users }: StoreState,
+  { id }: { id: string }
+) => {
   const authedUser = authed ? users[authed] : null;
   const q = questions[id];
   return {

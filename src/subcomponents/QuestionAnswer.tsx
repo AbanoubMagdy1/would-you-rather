@@ -1,31 +1,45 @@
-import React, { Component } from 'react';
+import React, { Component, FormEvent, MouseEvent } from 'react';
 import { answerQuestion } from '../actions/shared';
 import { Redirect, withRouter } from 'react-router-dom';
 import { Form, InputGroup } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-class QuestionAnswer extends Component {
-  state = {
-    answer: '',
-    isAnswered: false,
+import { QuestionAnswerProps, Users, OptionCases } from '../types';
+
+interface ComponentState {
+  answer: OptionCases;
+  isAnswered: boolean;
+}
+
+class QuestionAnswer extends Component<QuestionAnswerProps, ComponentState> {
+  constructor(props: QuestionAnswerProps) {
+    super(props);
+    this.state = {
+      answer: 'optionOne',
+      isAnswered: false,
+    };
+  }
+
+  handleChange = (e: MouseEvent<HTMLInputElement>) => {
+    const { value } = e.currentTarget;
+    if (value == 'optionOne' || value == 'optionTwo') {
+      this.setState({ answer: value });
+    }
   };
 
-  handleChange = e => {
-    this.setState({ answer: e.target.value });
-  };
-
-  handleAnswer = e => {
+  handleAnswer = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     this.setState({ isAnswered: true });
-
-    this.props.dispatch(
-      answerQuestion({
-        authedUser: this.props.authed.id,
-        qid: this.props.question.id,
-        answer: this.state.answer,
-      })
-    );
+    if (this.props.authed) {
+      this.props.dispatch(
+        answerQuestion({
+          authedUser: this.props.authed.id,
+          qid: this.props.question.id,
+          answer: this.state.answer,
+        })
+      );
+    }
   };
 
   render() {
@@ -61,8 +75,8 @@ class QuestionAnswer extends Component {
             </InputGroup>
             <button
               className="button mt-5"
-              to={`/answer/${question.id}`}
               disabled={this.state.isAnswered}
+              type="submit"
             >
               Answer
             </button>
@@ -72,7 +86,13 @@ class QuestionAnswer extends Component {
     );
   }
 }
-const mapStateToProps = ({ authed, users }) => ({
+
+interface ReduxConnect {
+  authed: null | string;
+  users: Users;
+}
+
+const mapStateToProps = ({ authed, users }: ReduxConnect) => ({
   authed: authed ? users[authed] : null,
 });
 

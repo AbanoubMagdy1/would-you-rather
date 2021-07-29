@@ -4,7 +4,24 @@ import {
   NEW_QUESTION,
 } from '../actions/shared';
 
-export default function questionsReducer(state = {}, action) {
+import {
+  Questions,
+  Question,
+  Option,
+  RecieveQuestionAction,
+  AnswerQuestionAction,
+  NewQuestionAction,
+} from '../types';
+
+type QuestionReducerAction =
+  | RecieveQuestionAction
+  | AnswerQuestionAction
+  | NewQuestionAction;
+
+export default function questionsReducer(
+  state: Questions = {},
+  action: QuestionReducerAction
+) {
   switch (action.type) {
     case RECEIVE_QUESTIONS:
       return { ...state, ...action.questions };
@@ -24,7 +41,7 @@ export default function questionsReducer(state = {}, action) {
   }
 }
 
-function questionReducer(state, action) {
+function questionReducer(state: Question, action: AnswerQuestionAction) {
   switch (action.type) {
     case ANSWER_QUESTION:
       return {
@@ -37,7 +54,7 @@ function questionReducer(state, action) {
   }
 }
 
-function answerReducer(state, action) {
+function answerReducer(state: Option, action: AnswerQuestionAction) {
   switch (action.type) {
     case ANSWER_QUESTION:
       return {

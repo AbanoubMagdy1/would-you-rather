@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import Question from '../components/Question';
 import QuestionAnswer from '../subcomponents/QuestionAnswer';
 import QuestionResult from '../subcomponents/QuestionResult';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, match } from 'react-router-dom';
+import { QuestionScreenProps, StoreState, QuestionParams } from '../types';
 
-class AnswerScreen extends Component {
+class QuestionScreen extends Component<QuestionScreenProps> {
   render() {
     const { id } = this.props.match.params;
     const { isAnswered, authed } = this.props;
@@ -23,10 +24,13 @@ class AnswerScreen extends Component {
   }
 }
 
-const mapStateToProps = ({ authed, questions, users }, { match }) => {
+const mapStateToProps = (
+  { authed, questions, users }: StoreState,
+  { match }: { match: match<QuestionParams> }
+) => {
   const { id } = match.params;
   const question = questions[match.params.id];
-  const authedUser = users[authed];
+  const authedUser = authed ? users[authed] : null;
   const isAnswered =
     !authedUser || !question || !Object.keys(authedUser.answers).includes(id)
       ? false
@@ -34,4 +38,4 @@ const mapStateToProps = ({ authed, questions, users }, { match }) => {
   return { isAnswered, authed };
 };
 
-export default connect(mapStateToProps)(AnswerScreen);
+export default connect(mapStateToProps)(QuestionScreen);

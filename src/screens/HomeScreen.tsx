@@ -5,15 +5,16 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './HomeScreen.css';
 
-const cases = {
-  answered: 'answered',
-  unanswered: 'unanswered',
-};
+import { HomeProps, StoreState, AnswerCases } from '../types';
 
-class HomeScreen extends Component {
-  state = { active: cases.unanswered };
+interface HomeState {
+  active: AnswerCases;
+}
 
-  changeQuestions = option => {
+class HomeScreen extends Component<HomeProps, HomeState> {
+  state = { active: AnswerCases.Unanswered };
+
+  changeQuestions = (option: AnswerCases) => {
     this.setState({ active: option });
   };
 
@@ -25,7 +26,7 @@ class HomeScreen extends Component {
       ? questions
       : questions.filter(q => {
           const isAnswered = answeredQuestions.includes(q);
-          return active === cases.answered ? isAnswered : !isAnswered;
+          return active === AnswerCases.Answered ? isAnswered : !isAnswered;
         });
     return (
       <>
@@ -35,15 +36,17 @@ class HomeScreen extends Component {
           <div className="btns-wrapper">
             <button
               className={`button ${
-                active === cases.unanswered ? 'active' : ''
+                active === AnswerCases.Unanswered ? 'active' : ''
               }`}
-              onClick={() => this.changeQuestions('unanswered')}
+              onClick={() => this.changeQuestions(AnswerCases.Unanswered)}
             >
               Unanswered Questions
             </button>
             <button
-              className={`button ${active === cases.answered ? 'active' : ''}`}
-              onClick={() => this.changeQuestions('answered')}
+              className={`button ${
+                active === AnswerCases.Answered ? 'active' : ''
+              }`}
+              onClick={() => this.changeQuestions(AnswerCases.Answered)}
             >
               Answered Questions
             </button>
@@ -59,7 +62,7 @@ class HomeScreen extends Component {
   }
 }
 
-const mapStateToProps = ({ authed, users, questions }) => {
+const mapStateToProps = ({ authed, users, questions }: StoreState) => {
   return {
     questions: Object.keys(questions).sort(
       (a, b) => questions[b].timestamp - questions[a].timestamp

@@ -1,4 +1,10 @@
-export const formatQuestion = (question, author, authed) => {
+import { Question, User } from '../types';
+
+export const formatQuestion = (
+  question: Question,
+  author: User,
+  authed: User | null
+) => {
   const { id, optionOne, optionTwo } = question;
   const { name, avatarURL } = author;
   const authedAnswer = !authed
@@ -21,7 +27,7 @@ export const formatQuestion = (question, author, authed) => {
   };
 };
 
-export const calcPercentage = (numerator, denomerator) => {
+export const calcPercentage = (numerator: number, denomerator: number) => {
   let percent = (numerator / denomerator) * 100;
   return {
     percent,

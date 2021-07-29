@@ -2,18 +2,10 @@ import React, { Component } from 'react';
 import { calcPercentage } from '../utils/helpers';
 import { Link } from 'react-router-dom';
 import { ProgressBar } from 'react-bootstrap';
-/*
-id,
-    name,
-    avatarURL,
-    optionOneText: optionOne.text,
-    optionOneVotes: optionOne.votes.length,
-    optionTwoText: optionTwo.text,
-    optionTwoVotes: optionTwo.votes.length,
-    totalVotes: optionOne.votes.length + optionTwo.votes.length,
-    authedAnswer,*/
 
-class QuestionResult extends Component {
+import { QuestionHomeProps } from '../types';
+
+class QuestionResult extends Component<QuestionHomeProps> {
   render() {
     const { question } = this.props;
     const {

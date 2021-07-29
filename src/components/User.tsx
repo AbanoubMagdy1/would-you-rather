@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './User.css';
 
-class User extends Component {
+import { UserProps } from '../types';
+
+class User extends Component<UserProps> {
   render() {
     const { user, rank } = this.props;
     const questionLength = user.questions.length;

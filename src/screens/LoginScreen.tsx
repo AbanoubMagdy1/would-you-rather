@@ -1,18 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component, FormEvent } from 'react';
 import { loginAction } from '../actions/authed';
 import { connect } from 'react-redux';
 import { Form, Dropdown, Button, Image } from 'react-bootstrap';
 
-class LoginScreen extends Component {
+import { LoginScreenProps, Users } from '../types';
+
+class LoginScreen extends Component<LoginScreenProps> {
   state = {
     id: '',
   };
 
-  handleChange = id => {
+  handleChange = (id: string) => {
     this.setState({ id });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { id } = this.state;
     if (this.state.id) {
@@ -84,6 +86,14 @@ class LoginScreen extends Component {
   }
 }
 
-const mapStateToProps = ({ users, authed }) => ({ users, authed });
+interface ReduxConnect {
+  users: Users;
+  authed: string | null;
+}
+
+const mapStateToProps = ({ users, authed }: ReduxConnect) => ({
+  users,
+  authed,
+});
 
 export default connect(mapStateToProps)(LoginScreen);

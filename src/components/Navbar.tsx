@@ -5,9 +5,11 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Navbar, Nav, Image } from 'react-bootstrap';
 
-class Header extends Component {
+import { NavBarProps, LogoutAction, Users, Authed } from '../types';
+
+class Header extends Component<NavBarProps> {
   handleLogout = () => {
-    this.props.dispatch(logoutAction());
+    this.props.dispatch<LogoutAction>(logoutAction());
     this.props.history.push('/login');
   };
 
@@ -63,7 +65,12 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = ({ users, authed }) => ({
+interface ReduxConnect {
+  users: Users;
+  authed: Authed;
+}
+
+const mapStateToProps = ({ users, authed }: ReduxConnect) => ({
   authed: authed ? users[authed] : null,
 });
 

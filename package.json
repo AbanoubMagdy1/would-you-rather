@@ -4,6 +4,13 @@
   "private": true,
   "homepage": "http://AbanoubMagdy1.github.io/would-you-rather/",
   "dependencies": {
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.12.5",
+    "@types/react": "^17.0.11",
+    "@types/react-dom": "^17.0.8",
+    "@types/react-redux": "^7.1.16",
+    "@types/react-router-bootstrap": "^0.24.5",
+    "@types/react-router-dom": "^5.1.7",
     "react": "^17.0.2",
     "react-bootstrap": "^1.5.2",
     "react-dom": "^17.0.2",
@@ -12,7 +19,8 @@
     "react-router-bootstrap": "^0.25.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "typescript": "^4.3.4"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -14,7 +14,9 @@ import { connect } from 'react-redux';
 import LoadingBar from 'react-redux-loading-bar';
 import { Route } from 'react-router-dom';
 
-class App extends Component {
+import { AppProps } from './types';
+
+class App extends Component<AppProps> {
   componentDidMount() {
     this.props.dispatch(receiveData());
   }
@@ -38,4 +40,8 @@ class App extends Component {
   }
 }
 
-export default connect(({ authed }) => ({ authed }))(App);
+interface ReduxConnect {
+  authed: string | null;
+}
+
+export default connect(({ authed }: ReduxConnect) => ({ authed }))(App);

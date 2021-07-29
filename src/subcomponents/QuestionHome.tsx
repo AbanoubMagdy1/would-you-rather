@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
-class QuestionHome extends Component {
+import { QuestionHomeProps } from '../types';
+
+class QuestionHome extends Component<QuestionHomeProps> {
   render() {
     const { question } = this.props;
     return (
@@ -17,4 +19,4 @@ class QuestionHome extends Component {
   }
 }
 
-export default QuestionHome;
+export default withRouter(QuestionHome);

@@ -4,7 +4,23 @@ import {
   NEW_QUESTION,
 } from '../actions/shared';
 
-export default function usersReducer(state = {}, action) {
+import {
+  Users,
+  User,
+  RecieveUserAction,
+  AnswerQuestionAction,
+  NewQuestionAction,
+} from '../types';
+
+type UserReducerAction =
+  | RecieveUserAction
+  | AnswerQuestionAction
+  | NewQuestionAction;
+
+export default function usersReducer(
+  state: Users = {},
+  action: UserReducerAction
+) {
   switch (action.type) {
     case RECEIVE_USERS:
       return { ...state, ...action.users };
@@ -26,7 +42,7 @@ export default function usersReducer(state = {}, action) {
   }
 }
 
-function userReducer(state, action) {
+function userReducer(state: User, action: UserReducerAction) {
   switch (action.type) {
     case ANSWER_QUESTION:
       return {
@@ -39,7 +55,7 @@ function userReducer(state, action) {
     case NEW_QUESTION:
       return {
         ...state,
-        questions: state.questions.concat([action.question]),
+        questions: state.questions.concat([action.question.id]),
       };
 
     default:

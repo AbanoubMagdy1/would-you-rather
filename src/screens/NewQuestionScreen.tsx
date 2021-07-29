@@ -1,28 +1,31 @@
-import React, { Component } from 'react';
+import React, { Component, ChangeEvent, FormEvent } from 'react';
 import { createQuestion } from '../actions/shared';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
+import { NewQuestionScreenProps, Authed } from '../types';
 
-class NewQuestionScreen extends Component {
+class NewQuestionScreen extends Component<NewQuestionScreenProps> {
   state = {
     optionOneText: '',
     optionTwoText: '',
   };
 
-  handleChange = e => {
+  handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { optionOneText, optionTwoText } = this.state;
     const { authed } = this.props;
-    this.props.dispatch(
-      createQuestion({ optionOneText, optionTwoText, author: authed }, () =>
-        this.props.history.push(`/`)
-      )
-    );
+    if (authed) {
+      this.props.dispatch(
+        createQuestion({ optionOneText, optionTwoText, author: authed }, () =>
+          this.props.history.push(`/`)
+        )
+      );
+    }
   };
 
   render() {
@@ -68,6 +71,6 @@ class NewQuestionScreen extends Component {
   }
 }
 
-const mapStateToProp = ({ authed }) => ({ authed });
+const mapStateToProp = ({ authed }: { authed: Authed }) => ({ authed });
 
 export default connect(mapStateToProp)(NewQuestionScreen);
